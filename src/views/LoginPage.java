@@ -1,5 +1,7 @@
 package views;
+
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -10,24 +12,27 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+public class LoginPage implements ActionListener {
 
-public class LoginPage implements ActionListener{
-    
     JFrame frame = new JFrame();
     JTextField userIdField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
-    JLabel userIDLabel = new JLabel("user: ");   
-    JLabel userPasswordLabel = new JLabel("Password: ");
+    JLabel titleLabel = new JLabel("Autókölcsönző admin felület");
+    JLabel userIDLabel = new JLabel("Felhasználó: ");
+    JLabel userPasswordLabel = new JLabel("Jelszó: ");
     JLabel messageLabel = new JLabel();
-    JLabel titleLabel = new JLabel();
     JButton loginButton = new JButton("Bejelentkezés");
-    JButton resetButton  = new JButton("Reset");
-    HashMap<String, String> logininfo = new HashMap<String, String>();
-    
-    LoginPage(HashMap<String, String> loginInfoOriginal){
+    JButton resetButton = new JButton("Újra");
+    MainView mainView;
 
-        
+    HashMap<String, String> logininfo = new HashMap<String, String>();
+
+    LoginPage(HashMap<String, String> loginInfoOriginal) {
+
         logininfo = loginInfoOriginal;
+
+        titleLabel.setBounds(75, 50, 400, 25);
+        titleLabel.setFont(new Font(null, Font.BOLD, 18));
 
         userIDLabel.setBounds(50, 100, 75, 25);
         userPasswordLabel.setBounds(50, 150, 75, 25);
@@ -46,6 +51,7 @@ public class LoginPage implements ActionListener{
         resetButton.setFocusable(false);
         resetButton.addActionListener(this);
 
+        frame.add(titleLabel);
         frame.add(userIDLabel);
         frame.add(userPasswordLabel);
         frame.add(messageLabel);
@@ -53,7 +59,6 @@ public class LoginPage implements ActionListener{
         frame.add(userPasswordField);
         frame.add(loginButton);
         frame.add(resetButton);
-        
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420, 420);
@@ -63,13 +68,13 @@ public class LoginPage implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        if (e.getSource()==resetButton) {
+
+        if (e.getSource() == resetButton) {
             userIdField.setText("");
             userPasswordField.setText("");
         }
 
-        if (e.getSource()==loginButton) {
+        if (e.getSource() == loginButton) {
             String userID = userIdField.getText();
             String password = String.valueOf(userPasswordField.getPassword());
 
@@ -78,16 +83,18 @@ public class LoginPage implements ActionListener{
                     messageLabel.setForeground(Color.green);
                     messageLabel.setText("Login Succesful");
                     frame.dispose();
-                    WelcomePage welcomePage = new WelcomePage(userID);
+                    mainView = new MainView(userID);
                 } else {
                     messageLabel.setForeground(Color.red);
-                    messageLabel.setText("Helytelen jelszó");;
+                    messageLabel.setText("Helytelen jelszó");
+                    ;
                 }
             } else {
                 messageLabel.setForeground(Color.red);
-                messageLabel.setText("Nincs ilyen felhasználó");;
+                messageLabel.setText("Nincs ilyen felhasználó");
+                ;
             }
         }
-        
+
     }
 }
