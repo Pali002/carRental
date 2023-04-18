@@ -54,12 +54,27 @@ public class MainView extends JFrame {
 
     }
 
+    // private void deleteButtonAction(java.awt.event.MouseEvent evt) {
+    // // int column = table.getColumnModel().getColumnIndex(evt.getX());
+    // // int row = evt.getY() / table.getRowHeight();
+
+    // // if (row < table.getRowCount() && row >= 0 && column <
+    // table.getColumnCount()
+    // // && column >= 0) {
+    // // Object rowValue = table.getValueAt(row, column);
+    // // DefaultTableModel tableModel = (DefaultTableModel) this.table.getModel();
+    // // int[] selectedRows = table.getSelectedRows();
+    // // for (int i = 0; i < selectedRows.length; i++)
+    // // tableModel.removeRow(selectedRows[i]);
+    // // }
+    // }
+
     private Object deleteButtonAction() {
         return null;
     }
 
-    private Object newButtonAction() {
-        return null;
+    private void newButtonAction() {
+
     }
 
     private Object saveButtonAction() {
