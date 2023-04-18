@@ -1,21 +1,72 @@
 package views;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.Font;
 
-public class MainView {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class MainView extends JFrame {
+
     JFrame frame = new JFrame();
-    JLabel welcomLabel = new JLabel("Hello");
+    JTable table;
+    JScrollPane scrollPane;
+    JButton newButton = new JButton("Új felvétele");
+    JButton saveButton = new JButton("Mentés");
+    JButton deleteButton = new JButton("Törlés");
+    JButton exitButton = new JButton("Kilépés");
 
     MainView(String userID) {
 
-        welcomLabel.setBounds(0, 0, 200, 35);
-        welcomLabel.setText(userID + " admin fiók");
+        String[] title = { "id", "Név", "Márka", "Ár" };
+        Object[][] details = {
+                { 1, "Nagy Peter", "Szolnok", 67 },
+                { 2, "Nagy Lajos", "Szolnok", 27 }
+        };
 
-        frame.add(welcomLabel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 420);
-        frame.setLayout(null);
-        frame.setVisible(true);
+        table = new JTable(details, title);
+        table.setFont(new Font("Serif", Font.BOLD, 16));
+        scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(50, 50, 600, 400);
+
+        newButton.setBounds(650, 100, 100, 30);
+        this.newButton.addActionListener(event -> newButtonAction());
+
+        saveButton.setBounds(650, 150, 100, 30);
+        this.saveButton.addActionListener(event -> saveButtonAction());
+
+        deleteButton.setBounds(650, 200, 100, 30);
+        this.deleteButton.addActionListener(event -> deleteButtonAction());
+
+        exitButton.setBounds(650, 250, 100, 30);
+        this.exitButton.addActionListener(event -> exitButtonAction());
+
+        add(scrollPane);
+        add(newButton);
+        add(saveButton);
+        add(deleteButton);
+        add(exitButton);
+        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        setVisible(true);
+
+    }
+
+    private Object deleteButtonAction() {
+        return null;
+    }
+
+    private Object newButtonAction() {
+        return null;
+    }
+
+    private Object saveButtonAction() {
+        return null;
+    }
+
+    public void exitButtonAction() {
+        System.exit(0);
     }
 }
